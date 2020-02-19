@@ -13,7 +13,11 @@ write in generateHTML.js next to appropiate html tags ${data.name},
 const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
-const pdfConvertor = require("electron-html-to");
+const convertFactory = require("electron-html-to");
+
+var conversion = convertFactory({
+    converterPath: convertFactory.converters.PDF
+});
 
 let profile = {};
 
