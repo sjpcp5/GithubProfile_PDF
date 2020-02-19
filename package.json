@@ -1,0 +1,31 @@
+{
+  "name": "githubprofile_pdf",
+  "version": "1.0.0",
+  "description": "converts generated html file with github user profile into a PDF file ",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjpcp5/HW9.git"
+  },
+  "keywords": [
+    "Github",
+    "PDF",
+    "Converter",
+    "profile"
+  ],
+  "author": "sjpcp5@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sjpcp5/HW9/issues"
+  },
+  "homepage": "https://github.com/sjpcp5/HW9#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "electron-html-to": "^2.6.0",
+    "fs": "0.0.1-security",
+    "inquirer": "^7.0.4"
+  }
+}

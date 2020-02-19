@@ -10,11 +10,12 @@ write in generateHTML.js next to appropiate html tags ${data.name},
 
  */
 //dependencies
-const inquirer = require("inquirer");
-const fs = require("fs");
-const axios = require("axios");
-const convertFactory = require("electron-html-to");
-const generateHTML = require("./generateHTML");
+var inquirer = require("inquirer");
+var axios = require("axios");
+var generateHTML = require("./generateHTML");
+var fs = require("fs"),
+    convertFactory = require('electron-html-to');
+
 
 var conversion = convertFactory({
     converterPath: convertFactory.converters.PDF
@@ -100,7 +101,7 @@ function init() {
 
 
 
-                            let resumeHTML = generateHTML(profile);
+                            let resumeHTML = generateHTML(data);
                             // console.log(resumeHTML)
 
                             conversion({ html: resumeHTML }, function(err, result) {
@@ -110,7 +111,7 @@ function init() {
 
                                 console.log(result.numberOfPages);
                                 console.log(result.logs);
-                                result.stream.pipe(fs.createWriteStream('./resume.pdf'));
+                                result.stream.pipe(fs.createWriteStream('../Assets/resume.pdf'));
                                 conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
 
                             });
