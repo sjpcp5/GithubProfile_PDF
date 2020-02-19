@@ -1,32 +1,32 @@
 const colors = {
-  green: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
+    green: {
+        wrapperBackground: "#E6E1C3",
+        headerBackground: "#C1C72C",
+        headerColor: "black",
+        photoBorderColor: "#black"
+    },
+    blue: {
+        wrapperBackground: "#5F64D3",
+        headerBackground: "#26175A",
+        headerColor: "white",
+        photoBorderColor: "#73448C"
+    },
+    pink: {
+        wrapperBackground: "#879CDF",
+        headerBackground: "#FF8374",
+        headerColor: "white",
+        photoBorderColor: "#FEE24C"
+    },
+    red: {
+        wrapperBackground: "#DE9967",
+        headerBackground: "#870603",
+        headerColor: "white",
+        photoBorderColor: "white"
+    }
 };
 
 function generateHTML(data) {
-  return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
@@ -170,5 +170,57 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
-        }
+      </style>
+      
+      <body>
+    <header>
+    <div class="wrapper">
+      <div class='photo-header'>
+        <img src="${data.portPic}"><br>
+        <h1>Hi!</h1>
+        <h2>My name is ${data.name}</h2>
+        <h3>Currently @ ${data.company}</h3>
+        <div class="links-nav">
+          <a class="nav-link" href="https://www.google.com/maps/place/${data.location.split(' ')[0]}+${data.location.split(' ')[1]}">${data.location}</a>
+          <a class="nav-link" href="https://github.com/${data.username}">github</a>
+          <a class="nav-link" href="${data.blog}">blog</a>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+      <div class="col">
+          <h4>${data.bio}</h4>
+      </div>
+      </div>
+      <div class="row">
+        <div class='col card'>
+          <h2>Public repositories: </h1>
+          ${data.numOfRepo}
+        </div>
+
+        <div class="col card">
+          <h2>Followers:</h1>
+          ${data.followers}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card col">
+          <h2>Stars:</h2>
+          ${data.stars}
+        </div>
+        <div class="card col">
+          <h2>Following:</h2>
+          ${data.followers}
+        </div>
+      </div>
+
+    </div>
+</body>
+  `
+
+
+};
