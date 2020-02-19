@@ -10,9 +10,12 @@ write in generateHTML.js next to appropiate html tags ${data.name},
 
  */
 //dependencies
-var inquirer = require("inquirer");
-var fs = require("fs");
-var profile = {}
+const inquirer = require("inquirer");
+const fs = require("fs");
+const axios = require("axios");
+const pdfConvertor = require("electron-html-to");
+
+let profile = {};
 
 const questions = [{
         type: "input",
