@@ -14,6 +14,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
 const convertFactory = require("electron-html-to");
+const generateHTML = require("./generateHTML");
 
 var conversion = convertFactory({
     converterPath: convertFactory.converters.PDF
@@ -35,21 +36,21 @@ const questions = [{
     }
 ];
 
-function writeToFile(fileName, data) {
+/* function writeToFile(fileName, data) {
 
-}
+} not neccessary when using electron-hmtl-to*/
 
 function init() {
     inquirer
         .prompt(questions)
         .then(function({ username, color }) {
-            console.log(answers);
+            console.log(answers, "prompt answers");
             const queryUrl = `https://api.github.com/users/${username}`;
 
             axios
                 .get(queryUrl)
                 .then((res) => {
-                    console.log(res.data)
+                    console.log(res.data, "response 1 data")
 
                     switch (color) {
                         case 'green':
@@ -66,7 +67,14 @@ function init() {
                             break;
 
                     }
-                    console.log(data.color)
+                    res.then(function() {
+                            console.log(data.color, "color");
+                        })
+                        .catch(function(error) {
+                            console.log(" please enter a valid username")
+                            return;
+                        });
+
 
                     data.username = username;
                     data.numOfRepo = res.data.public_repos;
@@ -86,7 +94,11 @@ function init() {
                                 data.stars += res.data[i].stargazers_count;
 
                             });
-                            console.log(data.stars);
+
+
+                            console.log(data.stars, "response data");
+
+
 
                             let resumeHTML = generateHTML(data);
                             // console.log(resumeHTML)
