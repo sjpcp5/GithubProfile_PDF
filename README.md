@@ -4,11 +4,10 @@ A command line application that dynamically generates a PDF of a github user. Th
 
 ## How it works
  
- ```
   1. Within the working directory of terminal or command line, type 'node index.js'
   2. The user will be prompted for a github username and favorite color.
   3. User's input will be used to load github username's profile data into a html file converted into a PDF "resume.pdf". The background color of the PDF will be the user's favorite color.
-  ```
+  
 ![Image](./assets/pic.png)
 
 ## User Story
