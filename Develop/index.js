@@ -20,7 +20,7 @@ var conversion = convertFactory({
     converterPath: convertFactory.converters.PDF
 });
 
-let profile = {};
+let data = {};
 
 const questions = [{
         type: "input",
@@ -70,9 +70,9 @@ function init() {
                     res.then(function() {
                             console.log(data.color, "color");
                         })
-                        .catch(function(error) {
-                            console.log(" please enter a valid username")
-                            return;
+                        .catch(function(err) {
+                            console.log(err, " please enter a valid username");
+                            return
                         });
 
 
@@ -100,7 +100,7 @@ function init() {
 
 
 
-                            let resumeHTML = generateHTML(data);
+                            let resumeHTML = generateHTML(profile);
                             // console.log(resumeHTML)
 
                             conversion({ html: resumeHTML }, function(err, result) {
