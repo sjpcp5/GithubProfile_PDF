@@ -95,7 +95,7 @@ async function init() {
                     data.blog = res.data.blog;
                     data.company = res.data.company;
                     data.bio = res.data.bio;
-                    writeToFile(username, numOfRepo, name, portPic, location, blog, company, bio, color);
+                    writeToFile(data.username, data.numOfRepo, data.name, data.portPic, data.location, data.blog, data.company, data.bio, data.color);
 
                     axios // axios call a to get stars
                         .get(`https://api/github.com/users/${username}/repos?per_page=100`)

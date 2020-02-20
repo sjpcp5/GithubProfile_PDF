@@ -26,6 +26,8 @@
     "axios": "^0.19.2",
     "electron-html-to": "^2.6.0",
     "fs": "0.0.1-security",
-    "inquirer": "^7.0.4"
+    "html-pdf": "^2.2.0",
+    "inquirer": "^7.0.4",
+    "util": "^0.12.1"
   }
 }
