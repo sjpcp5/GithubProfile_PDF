@@ -34,11 +34,24 @@ const questions = [{
     }
 ];
 
-/* function writeToFile(fileName, data) {
+function writeToFile(data) {
+    console.log("write to file")
+    const html = generateHTML(data);
+    writeFileAsync("index.html", html);
+    convertToPDF(html);
 
-} not neccessary when using electron-hmtl-to*/
+};
 
-function init() {
+function convertToPDF(htmlPdf) {
+    options = { format: 'Letter' };
+    pdf.create(htmlPdf, options).toFile('./resume.pdf', function(err, res) {
+        if (err)
+            return console.log(err);
+        console.log("Pdf Successfully generated", res);
+    });
+}
+
+async function init() {
     inquirer
         .prompt(questions)
         .then(function({ username, color }) {
@@ -82,6 +95,7 @@ function init() {
                     data.blog = res.data.blog;
                     data.company = res.data.company;
                     data.bio = res.data.bio;
+                    writeToFile(username, numOfRepo, name, portPic, location, blog, company, bio, color);
 
                     axios // axios call a to get stars
                         .get(`https://api/github.com/users/${username}/repos?per_page=100`)
@@ -95,10 +109,10 @@ function init() {
 
 
                             console.log(data.stars, "response data");
+                            writeToFile(stars);
 
 
-
-                            let resumeHTML = generateHTML(data);
+                            /*  let resumeHTML = generateHTML(data);
                             // console.log(resumeHTML)
 
                             conversion({ html: resumeHTML }, function(err, result) {
@@ -111,15 +125,15 @@ function init() {
                                 console.log(result.logs);
                                 result.stream.pipe(fs.createWriteStream('../Assets/resume.pdf'));
                                 conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-
-                            });
+                                    */
                         });
+                });
 
 
 
-                })
+        })
 
-        });
 };
+
 //starts process 
 init();
