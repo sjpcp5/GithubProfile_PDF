@@ -1,3 +1,5 @@
+//const ExpandPrompt = require("inquirer/lib/prompts/expand");
+
 const colors = {
     green: {
         wrapperBackground: "#E6E1C3",
@@ -221,6 +223,6 @@ function generateHTML(data) {
     </div>
 </body>
   `
+}
 
-
-};
+module.exports = generateHTML;

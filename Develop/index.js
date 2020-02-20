@@ -10,16 +10,13 @@ write in generateHTML.js next to appropiate html tags ${data.name},
 
  */
 //dependencies
-var inquirer = require("inquirer");
-var axios = require("axios");
-var generateHTML = require("./generateHTML");
-var fs = require("fs"),
-    convertFactory = require('electron-html-to');
-
-
-var conversion = convertFactory({
-    converterPath: convertFactory.converters.PDF
-});
+const inquirer = require("inquirer");
+const axios = require("axios");
+const generateHTML = require("./generateHTML");
+const fs = require("fs");
+const util = require("util");
+const writeFileAsync = util.promisify(fs.writefile);
+const pdf = require("html-pdf");
 
 let data = {};
 
@@ -108,6 +105,7 @@ function init() {
                                 if (err) {
                                     return console.error(err);
                                 }
+
 
                                 console.log(result.numberOfPages);
                                 console.log(result.logs);
