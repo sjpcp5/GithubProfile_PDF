@@ -101,7 +101,7 @@ function init() {
                 })
                 .then(function() {
                     console.log(`Successful 1st axios call and prompts`, data)
-                    writeToFile(data);
+
 
                 })
                 .catch(function(error) {
@@ -120,7 +120,7 @@ function init() {
                     };
                 })
 
-            .then(function() {
+            .then(function(data) {
                     console.log(data.stars, "response data stars");
                     writeToFile(data);
 
