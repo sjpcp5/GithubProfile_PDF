@@ -105,7 +105,6 @@ function init() {
                                 data.stars += res.data[i].stargazers_count;
                             };
                         })
-
                 })
                 .then(function() {
                     console.log(`Successful axios calls and prompts`, data)
@@ -113,9 +112,10 @@ function init() {
 
                 })
                 .catch(function(error) {
-                    console.log("please enter a valid Github username", error);
+                    console.log("please enter a valid Github username or other", error);
                     return
                 });
+
         })
         /*   .then(function(username) {
             axios // axios call a to get stars

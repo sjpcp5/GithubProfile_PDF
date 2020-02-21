@@ -1,31 +1,31 @@
 //const ExpandPrompt = require("inquirer/lib/prompts/expand");
 
-const colors = {
-    green: {
+const colors = [ // array to be referenced for generate HTML and uses prompt for color through inquirer
+    { //green
         wrapperBackground: "#E6E1C3",
         headerBackground: "#C1C72C",
         headerColor: "black",
         photoBorderColor: "#black"
     },
-    blue: {
+    { //blue
         wrapperBackground: "#5F64D3",
         headerBackground: "#26175A",
         headerColor: "white",
         photoBorderColor: "#73448C"
     },
-    pink: {
+    { //pink
         wrapperBackground: "#879CDF",
         headerBackground: "#FF8374",
         headerColor: "white",
         photoBorderColor: "#FEE24C"
     },
-    red: {
+    { //red
         wrapperBackground: "#DE9967",
         headerBackground: "#870603",
         headerColor: "white",
         photoBorderColor: "white"
     }
-};
+];
 
 function generateHTML(data) {
     return `<!DOCTYPE html>
