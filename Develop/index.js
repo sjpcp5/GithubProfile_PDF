@@ -45,7 +45,7 @@ function writeToFile(data) {
 
 function convertToPDF(htmlPdf) {
     options = { format: 'Letter' };
-    pdf.create(htmlPdf, options).toFile('./resume.pdf', function(err, res) {
+    pdf.create(htmlPdf, options).toFile('../Assets/resume.pdf', function(err, res) {
         if (err)
             return console.log(err);
         console.log("Pdf Successfully generated", res);
@@ -92,43 +92,53 @@ function init() {
                     data.blog = res.data.blog;
                     data.company = res.data.company;
                     data.bio = res.data.bio;
-                    writeToFile(data.username, data.numOfRepo, data.name, data.portPic, data.location, data.blog, data.company, data.bio, data.color);
 
-                    axios // axios call a to get stars
-                        .get(`https://api/github.com/users/${username}/repos?per_page=100`)
-                        .then((res) => {
-                            console.log(res)
-                            data.stars = 0
-                            data.stars.forEach(function(res) {
-                                data.stars += res.data[i].stargazers_count;
+                })
+                .then(function() {
+                    console.log(`Successful 1st axios call and prompts`, data)
 
-                            });
+                })
+                .catch(function(error) {
+                    console.log("please enter a valid Github username", error);
+                    return
+                });
+        })
+        .then(function() {
+            axios // axios call a to get stars
+                .get(`https://api/github.com/users/${username}/repos?per_page=100`)
+                .then((res) => {
+                    console.log(res, "2nd axios")
+                    data.stars = 0
+                    data.stars.forEach(function(res) {
+                            data.stars += res.data[i].stargazers_count;
 
+                        })
+                        .then(function() {
+                            console.log(data.stars, "response data stars");
+                            writeToFile();
 
-                            console.log(data.stars, "response data");
-                            writeToFile(stars);
-
-
-                            /*  let resumeHTML = generateHTML(data);
-                            // console.log(resumeHTML)
-
-                            conversion({ html: resumeHTML }, function(err, result) {
-                                if (err) {
-                                    return console.error(err);
-                                }
-
-
-                                console.log(result.numberOfPages);
-                                console.log(result.logs);
-                                result.stream.pipe(fs.createWriteStream('../Assets/resume.pdf'));
-                                conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-                                    */
+                        })
+                        .catch(function(error) {
+                            console.log("did not write to html and convert to pdf", error);
+                            return
                         });
+                    /*  let resumeHTML = generateHTML(data);
+                        // console.log(resumeHTML)
+    
+                        conversion({ html: resumeHTML }, function(err, result) {
+                            if (err) {
+                                return console.error(err);
+                            }
+    
+    
+                            console.log(result.numberOfPages);
+                            console.log(result.logs);
+                            result.stream.pipe(fs.createWriteStream('../Assets/resume.pdf'));
+                            conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+                                */
                 });
 
-
-
-        })
+        });
 
 };
 
