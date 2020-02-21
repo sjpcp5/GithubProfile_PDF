@@ -34,6 +34,7 @@ const questions = [{
     }
 ];
 
+
 function writeToFile(data) {
     console.log("write to file")
     const html = generateHTML(data);
@@ -51,11 +52,11 @@ function convertToPDF(htmlPdf) {
     });
 }
 
-async function init() {
+function init() {
     inquirer
         .prompt(questions)
         .then(function({ username, color }) {
-            console.log(answers, "prompt answers");
+            console.log(username, color, "prompt answers");
             const queryUrl = `https://api.github.com/users/${username}`;
 
             axios
@@ -78,13 +79,9 @@ async function init() {
                             break;
 
                     }
-                    res.then(function() {
-                            console.log(data.color, "color");
-                        })
-                        .catch(function(err) {
-                            console.log(err, " please enter a valid username");
-                            return
-                        });
+
+                    console.log(data.color, "color");
+
 
 
                     data.username = username;
