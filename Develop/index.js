@@ -15,7 +15,7 @@ const axios = require("axios");
 const generateHTML = require("./generateHTML");
 const fs = require("fs");
 const util = require("util");
-const writeFileAsync = util.promisify(fs.writefile);
+const writeFileAsync = util.promisify(fs.writeFile);
 const pdf = require("html-pdf");
 
 let data = {};
