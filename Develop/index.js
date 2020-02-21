@@ -96,13 +96,20 @@ function init() {
                     data.company = res.data.company;
                     data.bio = res.data.bio;
 
-
-
+                    axios // axios call a to get stars
+                        .get(`https://api.github.com/users/${username}/repos?per_page=100`)
+                        .then((res) => {
+                            console.log("2nd axios call successful");
+                            data.stars = 0;
+                            for (let i = 0; i < res.data.length; i++) { // Loop through each repository and count the number of stars
+                                data.stars += res.data[i].stargazers_count;
+                            };
+                        })
 
                 })
                 .then(function() {
-                    console.log(`Successful 1st axios call and prompts`, data)
-
+                    console.log(`Successful axios calls and prompts`, data)
+                    writeToFile(data);
 
                 })
                 .catch(function(error) {
@@ -110,7 +117,7 @@ function init() {
                     return
                 });
         })
-        .then(function(username) {
+        /*   .then(function(username) {
             axios // axios call a to get stars
                 .get(`https://api.github.com/users/${username}/repos?per_page=100`)
                 .then((res) => {
@@ -123,7 +130,7 @@ function init() {
 
             .then(function() {
                     console.log(data, "#2 hey check your data");
-                    writeToFile(data);
+
 
                 })
                 .catch(function(error) {
@@ -143,10 +150,10 @@ function init() {
                             console.log(result.logs);
                             result.stream.pipe(fs.createWriteStream('../Assets/resume.pdf'));
                             conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-                                */
+                                
 
 
-        });
+        }); */
 
 };
 
