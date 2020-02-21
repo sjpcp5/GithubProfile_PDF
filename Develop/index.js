@@ -120,7 +120,7 @@ function init() {
                     };
                 })
 
-            .then(function(data) {
+            .then(function() {
                     console.log(data.stars, "response data stars");
                     writeToFile(data);
 
