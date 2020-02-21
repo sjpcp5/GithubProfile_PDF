@@ -43,6 +43,7 @@ function writeToFile(data) {
 
 };
 
+
 function convertToPDF(htmlPdf) {
     options = { format: 'Letter' };
     pdf.create(htmlPdf, options).toFile('../Assets/resume.pdf', function(err, res) {
@@ -62,9 +63,9 @@ function init() {
             axios
                 .get(queryUrl)
                 .then((res) => {
-                    console.log(res.data, "response 1 data")
+                    //console.log(res.data, "response 1 data")
 
-                    switch (color) {
+                    /* switch (color) {
                         case 'green':
                             data.color = 0;
                             break;
@@ -80,22 +81,27 @@ function init() {
 
                     }
 
-                    console.log(data.color, "color");
+                    console.log(data.color, `chose color`); */
 
 
 
                     data.username = username;
                     data.numOfRepo = res.data.public_repos;
                     data.name = res.data.name;
+                    data.followers = res.data.followers;
+                    data.following = res.data.following;
                     data.portPic = res.data.avatar_url;
                     data.location = res.data.location;
                     data.blog = res.data.blog;
                     data.company = res.data.company;
                     data.bio = res.data.bio;
+                    data.color = color
+
 
                 })
                 .then(function() {
                     console.log(`Successful 1st axios call and prompts`, data)
+                    writeToFile(data);
 
                 })
                 .catch(function(error) {
@@ -103,26 +109,27 @@ function init() {
                     return
                 });
         })
-        .then(function() {
+        .then(function(username) {
             axios // axios call a to get stars
-                .get(`https://api/github.com/users/${username}/repos?per_page=100`)
+                .get(`https://api.github.com/users/${username}/repos?per_page=100`)
                 .then((res) => {
-                    console.log(res, "2nd axios")
-                    data.stars = 0
-                    data.stars.forEach(function(res) {
-                            data.stars += res.data[i].stargazers_count;
+                    console.log(data, "2nd axios");
+                    data.stars = 0;
+                    for (let i = 0; i < res.data.length; i++) { // Loop through each repository and count the number of stars
+                        data.stars += res.data[i].stargazers_count;
+                    };
+                })
 
-                        })
-                        .then(function() {
-                            console.log(data.stars, "response data stars");
-                            writeToFile();
+            .then(function(data) {
+                    console.log(data.stars, "response data stars");
+                    writeToFile(data);
 
-                        })
-                        .catch(function(error) {
-                            console.log("did not write to html and convert to pdf", error);
-                            return
-                        });
-                    /*  let resumeHTML = generateHTML(data);
+                })
+                .catch(function(error) {
+                    console.log("did not write to html and convert to pdf", error);
+                    return
+                });
+            /*  let resumeHTML = generateHTML(data);
                         // console.log(resumeHTML)
     
                         conversion({ html: resumeHTML }, function(err, result) {
@@ -136,7 +143,7 @@ function init() {
                             result.stream.pipe(fs.createWriteStream('../Assets/resume.pdf'));
                             conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
                                 */
-                });
+
 
         });
 

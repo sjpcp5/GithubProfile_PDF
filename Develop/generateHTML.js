@@ -54,7 +54,7 @@ function generateHTML(data) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[data.color],colors.wrapperBackground};
+         background-color: ${colors[data.color].wrapperBackground};
          padding-top: 100px;
          }
          body {
