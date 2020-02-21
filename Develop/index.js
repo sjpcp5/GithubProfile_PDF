@@ -35,9 +35,9 @@ const questions = [{
 ];
 
 
-function writeToFile(data) {
+function writeToFile(info) {
     console.log("write to file")
-    const html = generateHTML(data);
+    const html = generateHTML(info);
     writeFileAsync("index.html", html);
     convertToPDF(html);
 
@@ -65,7 +65,7 @@ function init() {
                 .then((res) => {
                     //console.log(res.data, "response 1 data")
 
-                    /* switch (color) {
+                    switch (color) {
                         case 'green':
                             data.color = 0;
                             break;
@@ -81,7 +81,7 @@ function init() {
 
                     }
 
-                    console.log(data.color, `chose color`); */
+                    console.log(data.color, "the color is a number");
 
 
 
@@ -95,7 +95,8 @@ function init() {
                     data.blog = res.data.blog;
                     data.company = res.data.company;
                     data.bio = res.data.bio;
-                    data.color = color
+
+
 
 
                 })
@@ -113,15 +114,15 @@ function init() {
             axios // axios call a to get stars
                 .get(`https://api.github.com/users/${username}/repos?per_page=100`)
                 .then((res) => {
-                    console.log(data, "2nd axios");
+                    console.log("2nd axios call successful");
                     data.stars = 0;
                     for (let i = 0; i < res.data.length; i++) { // Loop through each repository and count the number of stars
                         data.stars += res.data[i].stargazers_count;
                     };
                 })
 
-            .then(function(data) {
-                    console.log(data.stars, "response data stars");
+            .then(function() {
+                    console.log(data, "#2 hey check your data");
                     writeToFile(data);
 
                 })
