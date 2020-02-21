@@ -1,34 +1,4 @@
-//const ExpandPrompt = require("inquirer/lib/prompts/expand");
-
-const colors = {
-    green: { //green
-        wrapperBackground: "#E6E1C3",
-        headerBackground: "#C1C72C",
-        headerColor: "black",
-        photoBorderColor: "#black"
-    },
-    blue: { //blue
-        wrapperBackground: "#5F64D3",
-        headerBackground: "#26175A",
-        headerColor: "white",
-        photoBorderColor: "#73448C"
-    },
-    pink: { //pink
-        wrapperBackground: "#879CDF",
-        headerBackground: "#FF8374",
-        headerColor: "white",
-        photoBorderColor: "#FEE24C"
-    },
-    red: { //red
-        wrapperBackground: "#DE9967",
-        headerBackground: "#870603",
-        headerColor: "white",
-        photoBorderColor: "white"
-    }
-};
-
-function generateHTML(data) {
-    return `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
@@ -54,7 +24,7 @@ function generateHTML(data) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[data.color].wrapperBackground};
+         background-color: #E6E1C3;
          padding-top: 100px;
          }
          body {
@@ -96,8 +66,8 @@ function generateHTML(data) {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${colors[data.color].headerBackground};
-         color: ${colors[data.color].headerColor};
+         background-color: #C1C72C;
+         color: black;
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -108,7 +78,7 @@ function generateHTML(data) {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid ${colors[data.color].photoBorderColor};
+         border: 6px solid #black;
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -151,8 +121,8 @@ function generateHTML(data) {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: #C1C72C;
+           color: black;
            margin: 20px;
          }
          
@@ -178,14 +148,14 @@ function generateHTML(data) {
     <header>
     <div class="wrapper">
       <div class='photo-header'>
-        <img src="${data.portPic}"><br>
+        <img src="https://avatars0.githubusercontent.com/u/49599581?v=4"><br>
         <h1>Hi!</h1>
-        <h2>My name is ${data.name}</h2>
-        <h3>Currently @ ${data.company}</h3>
+        <h2>My name is Saphirah J Pociluyko</h2>
+        <h3>Currently @ US Army Corps of Engineers</h3>
         <div class="links-nav">
-          <a class="nav-link" href="https://www.google.com/maps/place/${data.location.split(' ')[0]}+${data.location.split(' ')[1]}">${data.location}</a>
-          <a class="nav-link" href="https://github.com/${data.username}">github</a>
-          <a class="nav-link" href="${data.blog}">blog</a>
+          <a class="nav-link" href="https://www.google.com/maps/place/Kansas+City,">Kansas City, MO</a>
+          <a class="nav-link" href="https://github.com/sjpcp5">github</a>
+          <a class="nav-link" href="">blog</a>
         </div>
 
       </div>
@@ -194,35 +164,32 @@ function generateHTML(data) {
     <div class="container">
       <div class="row">
       <div class="col">
-          <h4>${data.bio}</h4>
+          <h4>Web developer, Geographer, Urban Planner, and Adventurer. With hobbies in blockchain and data science.</h4>
       </div>
       </div>
       <div class="row">
         <div class='col card'>
           <h2>Public repositories: </h1>
-          ${data.numOfRepo}
+          14
         </div>
 
         <div class="col card">
           <h2>Followers:</h1>
-          ${data.followers}
+          0
         </div>
       </div>
 
       <div class="row">
         <div class="card col">
           <h2>Stars:</h2>
-          ${data.stars}
+          7
         </div>
         <div class="card col">
           <h2>Following:</h2>
-          ${data.following}
+          2
         </div>
       </div>
 
     </div>
 </body>
-  `
-}
-
-module.exports = generateHTML;
+  

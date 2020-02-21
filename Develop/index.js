@@ -56,8 +56,10 @@ function convertToPDF(htmlPdf) {
 function init() {
     inquirer
         .prompt(questions)
-        .then(function({ username, color }) {
-            console.log(username, color, "prompt answers");
+        .then(function(input) {
+            favColor = input.color;
+            username = input.username;
+            console.log(input, "prompt answers");
             const queryUrl = `https://api.github.com/users/${username}`;
 
             axios
@@ -65,26 +67,7 @@ function init() {
                 .then((res) => {
                     //console.log(res.data, "response 1 data")
 
-                    switch (color) {
-                        case 'green':
-                            data.color = 0;
-                            break;
-                        case 'blue':
-                            data.color = 1;
-                            break;
-                        case 'pink':
-                            data.color = 2;
-                            break;
-                        case 'red':
-                            data.color = 3;
-                            break;
-
-                    }
-
-                    console.log(data.color, "the color is a number");
-
-
-
+                    console.log(favColor, "is the color");
                     data.username = username;
                     data.numOfRepo = res.data.public_repos;
                     data.name = res.data.name;
@@ -95,6 +78,7 @@ function init() {
                     data.blog = res.data.blog;
                     data.company = res.data.company;
                     data.bio = res.data.bio;
+                    data.color = favColor;
 
                     axios // axios call a to get stars
                         .get(`https://api.github.com/users/${username}/repos?per_page=100`)
@@ -104,20 +88,23 @@ function init() {
                             for (let i = 0; i < res.data.length; i++) { // Loop through each repository and count the number of stars
                                 data.stars += res.data[i].stargazers_count;
                             };
+
                         })
-                })
-                .then(function() {
-                    console.log(`Successful axios calls and prompts`, data)
-                    writeToFile(data);
+                        .then(function() {
+                            console.log(`Successful axios calls and prompts`, data)
+                            writeToFile(data);
 
+                        })
+                        .catch(function(error) {
+                            console.log("please enter a valid Github username or other", error);
+                            return
+                        });
                 })
-                .catch(function(error) {
-                    console.log("please enter a valid Github username or other", error);
-                    return
-                });
+        });
 
-        })
-        /*   .then(function(username) {
+
+
+    /*   .then(function(username) {
             axios // axios call a to get stars
                 .get(`https://api.github.com/users/${username}/repos?per_page=100`)
                 .then((res) => {
