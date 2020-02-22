@@ -14,8 +14,8 @@ A command line application that dynamically generates a PDF of a github user. Th
   * Created PDF Profile 
 ![created PDF](./Assets/resume.png)
 
-  * Link to created PDF
-![PDF](./Assets/resume.pdf)
+  * Link to created PDF 
+![click](./Assets/resume.pdf)
 
 ## User Story
 
