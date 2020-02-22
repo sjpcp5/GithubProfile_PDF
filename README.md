@@ -8,7 +8,7 @@ A command line application that dynamically generates a PDF of a github user. Th
   2. The user will be prompted for a github username and favorite color.
   3. User's input will be used to load github username's profile data into a html file converted into a PDF "resume.pdf". The background color of the PDF will be the user's favorite color.
   
-![video](./assets/PDFdemo.gif)
+![video](./Assets/PDFdemo.gif)
 
 ## User Story
 
