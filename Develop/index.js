@@ -38,7 +38,7 @@ const questions = [{
 function writeToFile(info) {
     console.log("write to file")
     const html = generateHTML(info);
-    writeFileAsync("index.html", html);
+    writeFileAsync("../index.html", html);
     convertToPDF(html);
 
 };
