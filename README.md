@@ -18,7 +18,7 @@ A command line application that dynamically generates a PDF of a github user. Th
 
 * Link to created PDF
   
-![click](./Assets/resume.pdf)
+[click](./Assets/resume.pdf)
 
 ## User Story
 
@@ -28,4 +28,3 @@ dossiers of developers to recruit to the team.
 ## Business Context
 
 When preparing dossiers of desired development team to recruit. It is important to have up-to-date information about the developers. Rather than navigating to each developer's profile, a command-line application will allow for quick and easy generation of profiles in PDF format.
-
